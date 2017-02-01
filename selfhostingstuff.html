@@ -1,0 +1,390 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Selfhosting stuff</title>
+    <meta name="description" content="Host your own stuff, own your data">
+    <meta name="author" content="Koen Metsu">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<h1>Self-hosting</h1>
+
+</section>
+
+<section >
+
+<section >
+
+<h3>Oh wait!</h3>
+
+<h3>Like an application that hosts its web server in its own process?</h3>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h2>Oh right!</h2>
+
+<h3>Like how you use a program as part of the toolchain that produces new versions of that same program?</h3>
+
+</section>
+
+</section>
+
+<section >
+
+<h4>Selfhosting is the process of</h4>
+
+<h1>locally hosting and managing applications</h1>
+
+<h4>instead of renting from SaaS providers.</h4>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>What can you self-host?</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Feed readers</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Bookmarking services</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>ReadItLater clones</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Git servers</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Automation software</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Image galleries</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Wikis</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Mindmapping software</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Social networks</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Media streaming</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>File sharing</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>DNS services</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Monitoring software</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Pastebins</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>CI tools</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Password managers</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Maps</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Search engines</h1>
+
+</section>
+
+</section>
+
+<section >
+
+<h1>Gee... that sounds like a lot of work...</h1>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Advantages</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Decentralize the web</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Learn stuff</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Own your own data => Privacy++</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Only you can shut yourself down</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Fun</h1>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Disadvantages</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Security is important</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Maintenance</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>You can shut yourself down</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Time sink</h1>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Tips</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Docker</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Internal hosting: NUC</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>External hosting: DigitalOcean</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>SSL: Letsencrypt</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>(Wildcard) Dyndns: Synology</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Reverse proxy: nginx</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Security: Basic auth through nginx</h1>
+
+</section>
+
+<section author="Koen Metsu" description="Host your own stuff, own your data" theme="black" title="Selfhosting stuff" transition="default">
+
+<h1>Start with non-crucial stuff</h1>
+
+</section>
+
+</section>
+
+<section >
+
+<h1>Links</h1>
+
+<ul>
+<li><a href="https://github.com/Kickball/awesome-selfhosted">https://github.com/Kickball/awesome-selfhosted</a></li>
+<li><a href="https://www.reddit.com/r/selfhosted/">https://www.reddit.com/r/selfhosted/</a></li>
+</ul>
+
+</section>
+
+<section >
+
+<h1>Thank you</h1>
+
+<h3>Follow <a href="https://twitter.com/koenmetsu" title="@koenmetsu">@koenmetsu</a></h3>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
