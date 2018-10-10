@@ -1,10 +1,6 @@
 - title : Presentations
 - description : List of my presentations
 - author : Koen Metsu
-- theme : moon
-- title : React Native with F#
-- description : Introduction to React Native with F#
-- author : Steffen Forkmann
 - theme : night
 - transition : default
 
