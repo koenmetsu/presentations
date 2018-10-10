@@ -21,6 +21,7 @@
     <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
     <!-- If the query includes 'print-pdf', include the PDF print sheet -->
     <script>
 			if( window.location.search.match( /print-pdf/gi ) ) {
@@ -34,6 +35,14 @@
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
 </head>
 <body>
     <div class="reveal">
@@ -41,153 +50,84 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
-
 <h1>SoCraTes Slack Bot Pet Project</h1>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Why?</h2>
-
 <h3>Software Craftsmanship and Testing</h3>
-
 <ul>
 <li>It's about <strong>People</strong></li>
 <li>It's about <strong>Action</strong></li>
 <li>It's about <strong>Fun</strong></li>
 </ul>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Why??</h3>
-
 <p><img src="images/socratesbot/blog-pressure.png" alt="blog pressure channel" /></p>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Why???</h3>
-
 <p><img src="images/socratesbot/why.png" alt="yeah but why" /></p>
-
 </section>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Enter Socrates</h2>
-
 <p><img src="images/socratesbot/socrates.jpg" alt="socrates" /></p>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Socrates' Principles</h3>
-
 <ul>
 <li>Opt-in</li>
 <li>"Remind me to blog" + time</li>
 <li>Glory or Shame</li>
 </ul>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>DING, DING</h3>
-
 <p><img src="images/socratesbot/shame.jpg" alt="shame" /></p>
-
 </section>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Technically</h2>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Node.js</h3>
-
 <p>BotKit, Chrono and some json</p>
-
 <p><img src="images/socratesbot/spaghetti.jpg" alt="nodejs" /></p>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Run on local server</h3>
-
 <p><img src="images/socratesbot/server.jpg" alt="server" /></p>
-
 </section>
-
 </section>
-
 <section >
-
 <section >
-
 <h2>Things I'd like to improve</h2>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Testability</h3>
-
 <p>Help?</p>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Hosting</h3>
-
 <ul>
 <li>Cheap cloud (Lambda, Azure, ...)</li>
 </ul>
-
 <p>Help?</p>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h3>Continuous Deployment</h3>
-
 <p><em>(To said cheap cloud)</em></p>
-
 <p>Help?</p>
-
 </section>
-
-<section author="Koen Metsu" description="SoCraTes Slack Bot Pet Project" theme="black" title="Socrates, slack bot" transition="default">
-
+<section >
 <h1>Thank you</h1>
-
 <h3>Follow <a href="https://twitter.com/koenmetsu" title="@koenmetsu">@koenmetsu</a></h3>
-
 </section>
-
 </section>
-
 
 
         </div>
@@ -195,6 +135,8 @@
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
 
         // Full list of configuration options available here:
         // https://github.com/hakimel/reveal.js#configuration

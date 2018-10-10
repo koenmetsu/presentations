@@ -21,6 +21,7 @@
     <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
     <!-- If the query includes 'print-pdf', include the PDF print sheet -->
     <script>
 			if( window.location.search.match( /print-pdf/gi ) ) {
@@ -34,6 +35,14 @@
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
 </head>
 <body>
     <div class="reveal">
@@ -41,85 +50,50 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
-
 <h1>Splitting up a problem into microservices</h1>
-
 <h3>Erik Talboom &amp; Koen Metsu</h3>
-
 </section>
-
 <section >
-
 <h1>Erik Talboom</h1>
-
 <h2>Co-learning</h2>
-
 <ul>
 <li>Agile transformation and facilitation expert</li>
 </ul>
-
 </section>
-
 <section >
-
 <h1>Koen Metsu</h1>
-
 <h2>Independent Consultant</h2>
-
 <ul>
 <li>.NET, C#, F#, Javascript, Java, Ruby</li>
 </ul>
-
 </section>
-
 <section >
-
 <h1>SoCraTes BE</h1>
-
 <ul>
 <li>Community for Belgian Software Craftsmanship and Testing</li>
 <li>Learn from each other</li>
 <li>Share knowledge and experiences</li>
 <li>Practice together</li>
 </ul>
-
 </section>
-
 <section >
-
 <h1>Poker</h1>
-
 <p><img src="images/basic-rules-3.gif" alt="poker image" />
 <img src="images/basic-rules-4.gif" alt="poker image" /></p>
-
 </section>
-
 <section >
-
 <h1>Have fun!</h1>
-
 </section>
-
 <section >
-
 <h1>Global Day of Coderetreat 2015</h1>
-
 <h3>November 14, 2015</h3>
-
 <h4>A day to celebrate passion and software craftsmanship</h4>
-
 <h4><a href="http://globalday.coderetreat.org/">http://globalday.coderetreat.org/</a></h4>
-
 <h4><a href="http://meetup.com/Belgian-Community-for-Software-Craftsmanship/events/225605456/">http://meetup.com/Belgian-Community-for-Software-Craftsmanship/events/225605456/</a></h4>
-
 </section>
-
 <section >
-
 <h1>Thank you!</h1>
-
 </section>
-
 
 
         </div>
@@ -127,6 +101,8 @@
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
 
         // Full list of configuration options available here:
         // https://github.com/hakimel/reveal.js#configuration
