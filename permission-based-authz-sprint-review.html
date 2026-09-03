@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Sprint Review — Permission-Based Authorization</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<style>
+  :root{ --accent:#5b8cff; --good:#4cbb83; --warn:#e0a940; --bad:#e05a5a; --muted:#98a2b3; }
+  .reveal{ font-family:-apple-system,"Segoe UI",Inter,Helvetica,Arial,sans-serif; }
+  .reveal h1, .reveal h2, .reveal h3{ font-weight:650; letter-spacing:-0.01em; text-transform:none; }
+  .reveal .eyebrow{ font-size:0.55em; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:0.3em; display:block; }
+  .reveal p.lead{ font-size:0.65em; line-height:1.5; color:#cfd6e0; text-align:left; }
+  .reveal section{ text-align:left; }
+  .reveal section.center{ text-align:center; }
+  .reveal .cols{ display:flex; gap:2em; align-items:stretch; }
+  .reveal .col{ flex:1; }
+  .card{ background:#1a1f28; border:1px solid #2b3240; border-radius:10px; padding:0.8em 1em; margin-bottom:0.6em; }
+  .card.warn-card{ border-color:#5a4520; background:#241d10; }
+  .card.bad-card{ border-color:#5a2020; background:#241010; }
+  .reveal ul.simple{ list-style:none; margin:0; padding:0; font-size:0.58em; }
+  .reveal ul.simple li{ padding:0.45em 0 0.45em 1.3em; position:relative; border-bottom:1px solid #262d38; line-height:1.4; }
+  .reveal ul.simple li:last-child{border-bottom:none;}
+  .reveal ul.simple li::before{ content:"→"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+  .reveal table{ font-size:0.5em; }
+  .reveal table th{ color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-size:0.85em; }
+  .reveal table td, .reveal table th{ padding:0.45em 0.6em; }
+  .pill{ display:inline-block; padding:0.15em 0.6em; border-radius:100px; font-size:0.55em; font-weight:600; white-space:nowrap; }
+  .pill.done{ background:#4cbb8322; color:var(--good); }
+  .pill.progress{ background:#e0a94022; color:var(--warn); }
+  .pill.next{ background:#5b8cff22; color:var(--accent); }
+  .pill.bad{ background:#e05a5a22; color:var(--bad); }
+  .stat-row{ display:flex; gap:1.2em; margin-top:0.4em; }
+  .stat{ flex:1; background:#1a1f28; border:1px solid #2b3240; border-radius:10px; padding:0.8em 1em; }
+  .stat .num{ font-size:1.5em; font-weight:700; font-family:monospace; color:var(--accent); }
+  .stat .label{ font-size:0.48em; color:var(--muted); margin-top:0.3em; }
+  .name-row{ display:flex; gap:1em; margin-top:0.6em; }
+  .name-card{ flex:1; background:#1a1f28; border:1px solid #2b3240; border-radius:10px; padding:0.9em 1em; }
+  .name-card .who{ font-size:0.8em; font-weight:700; }
+  .name-card .role{ font-size:0.45em; color:var(--muted); margin-bottom:0.5em; }
+  .name-card ul{ margin:0; padding-left:0.9em; font-size:0.48em; line-height:1.6; }
+  .progressbar-wrap{ background:#1a1f28; border:1px solid #2b3240; border-radius:8px; padding:0.55em 0.8em; margin-bottom:0.45em; }
+  .progressbar-label{ display:flex; justify-content:space-between; font-size:0.48em; margin-bottom:0.3em; }
+  .progressbar-track{ height:0.5em; background:#232a35; border-radius:100px; overflow:hidden; }
+  .progressbar-fill{ height:100%; background:var(--accent); border-radius:100px; }
+  code.inline{ font-family:monospace; color:var(--accent); background:none; }
+  .quote{ font-size:0.58em; line-height:1.6; font-style:italic; border-left:4px solid var(--accent); padding-left:0.9em; color:#e6e9ef; }
+  .reveal pre{ box-shadow:none; width:100%; }
+  .reveal pre code{ font-size:0.42em; line-height:1.5; max-height:420px; padding:0.8em 1em; }
+  .jira-tag{ font-family:monospace; color:var(--accent); font-weight:700; }
+</style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 1: Title -->
+    <section class="center" data-transition="fade">
+      <span class="eyebrow">OrganisationRegistry · Sprint Review</span>
+      <h2>Permissie-gebaseerde autorisatie</h2>
+      <table style="margin:1.2em auto 0;width:auto;">
+        <tr><td style="color:var(--muted);">Sprint</td><td>28 aug – 3 sep 2026</td></tr>
+        <tr><td style="color:var(--muted);">Epic</td><td class="jira-tag">OR-3114</td><td>PJ758 — Rollen en rechten</td></tr>
+        <tr><td style="color:var(--muted);">Team</td><td>Koen · Egon · Yusuf (halftijds) · Jan (halftijds)</td></tr>
+      </table>
+    </section>
+
+    <!-- 2: Sprint recap - Done items -->
+    <section>
+      <span class="eyebrow">Deze sprint (Jira-status)</span>
+      <h3>Hoofdstory OR-3296: In Test</h3>
+      <table>
+        <tr><th>Ticket</th><th>Titel</th><th>Status</th></tr>
+        <tr><td class="jira-tag">OR-3296</td><td>Als frontend wil ik via /v1/me kunnen zien of ik organisaties mag aanmaken</td><td><span class="pill progress">In Test</span></td></tr>
+        <tr><td class="jira-tag">OR-3398</td><td>Permissietests voor Sleutels</td><td><span class="pill progress">In Progress</span></td></tr>
+      </table>
+      <div class="card" style="margin-top:0.5em;">
+        <p class="lead" style="margin:0;">30+ commits deze sprint op OR-3296/OR-3398. Details op de volgende slides.</p>
+      </div>
+    </section>
+
+    <!-- 3: AGO issue -->
+    <section>
+      <span class="eyebrow">Openstaand probleem — te melden aan Cegeka</span>
+      <h3>ElasticSearch-projecties liepen vast op staging (AGO)</h3>
+      <div class="card bad-card">
+        <ul class="simple">
+          <li><b>Wat gebeurde er:</b> ElasticSearch-projecties liepen vast op de staging-omgeving.</li>
+          <li><b>Grondoorzaak:</b> events kwamen binnen met lege essentiële velden — de validators die dit hadden moeten tegenhouden, werken blijkbaar niet correct.</li>
+          <li><b>Waarom dit nu pas opvalt:</b> tot nu toe beschermde de (oude) UI hiertegen — een gebruiker kon deze lege velden nooit versturen. Met de nieuwe UI valt die bescherming weg, en komen de onderliggende validatie-gaten aan het licht.</li>
+        </ul>
+      </div>
+      <div class="card warn-card" style="margin-top:0.6em;">
+        <p class="lead" style="margin:0;">
+          <b style="color:var(--warn);">Actie:</b> dit is geen permissie-bug maar een <b>datavalidatie</b>-bug in het command-/domeinlaag — orthogonaal aan dit werk maar ontdekt tijdens het testen ervan. Er moet een <b>nieuw bug-ticket op Jira</b> komen zodat dit niet stil in de sprint-marge verdwijnt.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4: Security groundwork - non-tech -->
+    <section>
+      <span class="eyebrow">Beveiliging</span>
+      <h3>Centraal permissiemodel + samenstelbare restrictie-architectuur</h3>
+      <div class="cols">
+        <div class="col card">
+          <h4 style="margin:0 0 0.3em;font-size:0.8em;">Voor deze sprint</h4>
+          <ul class="simple">
+            <li>Autorisatielogica: deels frontend, deels backend, per rol hardcoded.</li>
+            <li>Rol-checks verspreid over losse policy-klassen, geen centrale bron van waarheid.</li>
+          </ul>
+        </div>
+        <div class="col card">
+          <h4 style="margin:0 0 0.3em;font-size:0.8em;">Na deze sprint</h4>
+          <ul class="simple">
+            <li>Eén centraal <code class="inline">Permission</code>-model: elke rol krijgt expliciet toegewezen rechten.</li>
+            <li>Restrictie-architectuur: een generieke, samenstelbare <code class="inline">IRestriction</code>-algebra (<code class="inline">AllowList</code>, <code class="inline">NotAllowList</code>, <code class="inline">CompositeAnd</code>, <code class="inline">RequireUnderVlimpersManagement</code>, ...), elk apart unit-getest.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5: How it works -->
+    <section>
+      <span class="eyebrow">Hoe werkt het nu, architecturaal</span>
+      <h3>Twee lagen: poort (permissie) en context (restrictie)</h3>
+      <p class="lead" style="text-align:center;font-size:0.68em;">
+        Gebruiker logt in &nbsp;→&nbsp; <b style="color:var(--accent);">Laag 1 — Controller-poort</b>: heeft deze rol de permissie? &nbsp;→&nbsp; <b style="color:var(--accent);">Laag 2 — Policy-restrictie</b>: geldt de permissie ook voor déze organisatie/dit record? &nbsp;→&nbsp; Actie toegestaan of 403
+      </p>
+      <div class="card">
+        <p class="lead" style="margin:0;"><b>Voorbeeld:</b> een <code class="inline">VlimpersBeheerder</code> heeft <code class="inline">CanManageKeys</code> — maar enkel als restrictie: <i>enkel als de organisatie onder Vlimpers-beheer staat, en enkel voor toegelaten sleuteltypes</i>. Beide lagen moeten "ja" zeggen.</p>
+      </div>
+    </section>
+
+    <!-- 6: RolePermissionMap / ScopePermissionMap overview -->
+    <section>
+      <span class="eyebrow">Concreet — de vertaaltabellen</span>
+      <h3><code class="inline">RolePermissionMap</code> &amp; <code class="inline">ScopePermissionMap</code></h3>
+      <div class="stat-row">
+        <div class="stat"><div class="num">9</div><div class="label">rollen in RolePermissionMap</div></div>
+        <div class="stat"><div class="num">4</div><div class="label">M2M-scopes in ScopePermissionMap</div></div>
+        <div class="stat"><div class="num">21</div><div class="label">permissies totaal in het <code class="inline">Permission</code>-enum</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">59</div><div class="label">permissies toegekend via rollen (RolePermissionMap, incl. restricted grants)</div></div>
+        <div class="stat"><div class="num">21</div><div class="label">permissies toegekend via scopes (ScopePermissionMap)</div></div>
+      </div>
+      <div class="card" style="margin-top:0.5em;">
+        <p class="lead" style="margin:0;">Onbekende rol of scope → <code class="inline">PermissionSet.Empty</code>, fail-closed. Nooit toevallig toegang door een ontbrekende regel.</p>
+      </div>
+    </section>
+
+    <!-- 6b: RolePermissionMap code sample -->
+    <section>
+      <span class="eyebrow">Concreet — de vertaaltabel in code</span>
+      <h3><code class="inline">RolePermissionMap</code>: elke rol expliciet, niets impliciet</h3>
+      <pre><code class="language-csharp" data-trim>
+public static class RolePermissionMap
+{
+    private static readonly IReadOnlyDictionary&lt;Role, PermissionSet&gt; Map =
+        new Dictionary&lt;Role, PermissionSet&gt;
+        {
+            [Role.AlgemeenBeheerder] = PermissionSet.Of(
+                Permission.CanManageChildren,
+                Permission.CanManageContacts,
+                Permission.CanManageFunctions,
+                Permission.CanManageCapacities,
+                Permission.CanManageKeys,
+                Permission.CanManageBodies,
+                Permission.CanImport,
+                Permission.CanReadConfiguration),
+
+            [Role.VlimpersBeheerder] = PermissionSet.Of(
+                Permission.CanManageChildren,
+                Permission.CanManageLabels,
+                Permission.CanEditOrganisationLabels),
+
+            [Role.AutomatedTask] = PermissionSet.Of(
+                Permission.CanRunScheduledJobs),
+        };
+      </code></pre>
+    </section>
+
+    <!-- 7: Sleutels als afgewerkt voorbeeld -->
+    <section>
+      <span class="eyebrow">Afgewerkt voorbeeld — Sleutels (Keys)</span>
+      <h3>Wat is er concreet gebouwd voor Sleutels</h3>
+      <div class="card">
+        <ul class="simple">
+          <li><code class="inline">Permission.CanManageKeys</code> toegevoegd aan het permissie-enum en aan <code class="inline">RolePermissionMap</code></li>
+          <li><code class="inline">KeyContext</code> + <code class="inline">KeyRestrictions</code>: restrictie-context met Vlimpers-status en keytype-allowlist</li>
+          <li><code class="inline">KeyPolicy</code> herbouwd op de <code class="inline">IRestriction</code>-algebra i.p.v. hardcoded rol-checks</li>
+          <li>Controllers (<code class="inline">OrganisationKeyController</code>, <code class="inline">OrganisationKeyCommandController</code>) gebruiken <code class="inline">OrganisationRegistryAuthorize</code> met de nieuwe permissie</li>
+          <li>Command handlers voor aanmaken/wijzigen/verwijderen van sleutels autoriseren via <code class="inline">KeyPolicy</code></li>
+          <li><code class="inline">CanSelect</code>/<code class="inline">CanEdit</code> velden toegevoegd aan de sleutel-list respons</li>
+          <li>Volledige testdekking: unit, API-integratie, SQL-integratie — alles groen</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7b: Controllers coverage -->
+    <section>
+      <span class="eyebrow">Controllers — waar staan de permissie-checks al</span>
+      <h3>76 van 142 controllers hebben een autorisatie-check</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="num">76 / 142</div><div class="label">controllers met een autorisatie-check: 71 met het nieuwe <code class="inline">OrganisationRegistryAuthorize</code>-attribuut + 5 met het oudere <code class="inline">[Authorize(..., Policy=...)]</code> uit de legacy Edit-API</div></div>
+        <div class="stat"><div class="num">7 / 76</div><div class="label">daarvan met ook een restrictie-check op de <b>read (GET)</b>-actie zelf (<code class="inline">KeyPolicy</code>, <code class="inline">LabelPolicy</code>, <code class="inline">CapacityPolicy</code>, <code class="inline">RegulationPolicy</code>, <code class="inline">OrganisationClassificationTypePolicy</code>) — de restrictie op de write-kant zit in de command handler, niet in de command-controller</div></div>
+      </div>
+      <div class="card" style="margin-top:0.6em;">
+        <p class="lead" style="margin:0;"><b>Wél afgedekt:</b> 49 command-controllers (mutaties) + 22 niet-command controllers op het nieuwe attribuut (bv. <code class="inline">KboController</code>, <code class="inline">VlimpersController</code>, <code class="inline">SecurityController</code>, <code class="inline">ImportOrganisationsController</code>) + 5 legacy Edit-API-controllers (bv. <code class="inline">OrganisationBankAccountController</code>, <code class="inline">OrganisationContactsController</code>) op het oudere schema.</p>
+      </div>
+      <div class="card">
+        <p class="lead" style="margin:0;"><b>Poort wél, restrictie nog niet:</b> de overige 69 van de 76 checken enkel of de rol/permissie aanwezig is (laag 1) — een per-record restrictie (laag 2) is enkel al toegepast bij Sleutels, Labels, Capaciteiten, Regelgeving en OrganisatieClassificaties.</p>
+      </div>
+      <div class="card">
+        <p class="lead" style="margin:0;"><b>Nog niet afgedekt (66 controllers):</b> de <b>read-only query/list/report-controllers</b> (bv. <code class="inline">OrganisationListController</code>, <code class="inline">BodyListController</code>, de Report-controllers, <code class="inline">SearchController</code>) — deze muteren niets.</p>
+      </div>
+    </section>
+
+    <!-- 7c: Handlers coverage -->
+    <section>
+      <span class="eyebrow">Command handlers — waar staat het patroon al</span>
+      <h3>9 van 100 command handlers op het nieuwe permissiemodel</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="num">9 / 100</div><div class="label">op het nieuwe permissiemodel (<code class="inline">Permission</code> + <code class="inline">IRestriction</code>) — direct via <code class="inline">RequiresPermission(...)</code> of via <code class="inline">KeyPolicy</code>/<code class="inline">FormalFrameworkPolicy</code></div></div>
+        <div class="stat"><div class="num">91 / 100</div><div class="label">nog te migreren</div></div>
+      </div>
+      <div class="card" style="margin-top:0.6em;">
+        <p class="lead" style="margin:0;">Let op: veel van die 91 zitten al in een eigen <code class="inline">Policy</code>-klasse (bv. <code class="inline">LabelPolicy</code>, <code class="inline">VlimpersPolicy</code>, <code class="inline">CapacityPolicy</code>, <code class="inline">BeheerderForOrganisation...Policy</code>) — maar die klasses checken vandaag nog rechtstreeks op <code class="inline">Role</code> (<code class="inline">user.IsInAnyOf(...)</code>), niet op <code class="inline">Permission</code>. De "Policy"-naam is dus geen garantie dat het al het nieuwe model is.</p>
+      </div>
+      <div class="card">
+        <p class="lead" style="margin:0;"><b>Nog geen enkele check (11 handlers):</b> o.a. <code class="inline">AssignBodyNumberCommandHandler</code>, <code class="inline">UpdateMainLocationCommandHandler</code>, <code class="inline">UpdateMainBuildingCommandHandler</code>, <code class="inline">CreateOrganisationsFromImportCommandHandler</code>, <code class="inline">UpdateOrganisationFormalFrameworkParentsCommandHandler</code>.</p>
+      </div>
+    </section>
+
+    <!-- 8: Timeline since last Monday -->
+    <section>
+      <span class="eyebrow">Tijdlijn — sinds maandag 28 augustus</span>
+      <h3>Wat de commits echt laten zien</h3>
+      <div class="card">
+        <ul class="simple">
+          <li><b>28/08:</b> startpunt — <code class="inline">Permission</code>-enum + eerste versie van <code class="inline">RolePermissionMap</code>/<code class="inline">ScopePermissionMap</code>.</li>
+          <li><b>31/08 – 01/09:</b> restrictie-primitieven, Sleutels end-to-end (permissiemodel-referentie), <code class="inline">CanEditAll</code> verwijderd, eerste controller-gates.</li>
+          <li><b>02/09:</b> piekdag — 10+ commits: <code class="inline">CanSelect</code>/<code class="inline">CanEdit</code> op keys, restrictions op meerdere contexten, permissietests voor keys, handover- en cookbook-documentatie.</li>
+          <li><b>03/09:</b> permissiechecks op meer controllers + tests, 403 i.p.v. 400 bij een verboden actie, scope-based permissions (M2M) afgewerkt.</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-top:0.4em;">
+        <p class="lead" style="margin:0;"><b>Infrastructuur:</b> fout wachtwoord in de AWS/OpenSearch-configuratie tijdens de sprint, ondertussen opgelost.</p>
+      </div>
+      <div class="card" style="margin-top:0.4em;">
+        <p class="lead" style="margin:0;">Deze tijdlijn is gebaseerd op de commit-historie, niet op <code class="inline">tasks.md</code>.</p>
+      </div>
+    </section>
+
+    <!-- 9: What's functionally done -->
+    <section>
+      <span class="eyebrow">Functioneel — wat staat er al</span>
+      <h3>Stand van zaken per bouwsteen</h3>
+      <div class="progressbar-wrap">
+        <div class="progressbar-label"><span>Rol → permissie-vertaling (RolePermissionMap / ScopePermissionMap)</span><span>100%</span></div>
+
+        <div class="progressbar-track"><div class="progressbar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="progressbar-wrap">
+        <div class="progressbar-label"><span>Sleutels (Keys) — volledig incl. restricties (permissiemodel-referentie)</span><span>100%</span></div>
+        <div class="progressbar-track"><div class="progressbar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="progressbar-wrap">
+        <div class="progressbar-label"><span>Controller-poorten op 12 resource-types</span><span>~85%</span></div>
+        <div class="progressbar-track"><div class="progressbar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="progressbar-wrap">
+        <div class="progressbar-label"><span>Restrictie-architectuur (IRestriction-algebra, samenstelbaar en getest)</span><span>100%</span></div>
+        <div class="progressbar-track"><div class="progressbar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="progressbar-wrap">
+        <div class="progressbar-label"><span>Uitrol van restricties naar alle 12 resource-types (Vlimpers/OVO)</span><span>~25%</span></div>
+        <div class="progressbar-track"><div class="progressbar-fill" style="width:25%"></div></div>
+      </div>
+      <div class="progressbar-wrap">
+        <div class="progressbar-label"><span>Rechten teruggeven aan frontend per veld (canEdit/canSelect)</span><span>~15%</span></div>
+        <div class="progressbar-track"><div class="progressbar-fill" style="width:15%"></div></div>
+      </div>
+    </section>
+
+    <!-- 10: What's not done -->
+    <section>
+      <span class="eyebrow">Functioneel — wat staat er nog open</span>
+      <h3>10 van 12 resource-types wachten nog op het permissiemodel-patroon</h3>
+      <table>
+        <tr><th>Onderdeel</th><th>Status</th><th>Nog te doen</th></tr>
+        <tr><td>Sleutels (Keys)</td><td><span class="pill done">Klaar</span></td><td>Dient als referentiepatroon</td></tr>
+        <tr><td>Overige 10 policies (Vlimpers, Label, Capacity, Body, Regulation, ...)</td><td><span class="pill next">Oud patroon</span></td><td>Nog hardcoded rol-checks, niet omgezet naar <code class="inline">IRestriction</code></td></tr>
+        <tr><td>/v1/me — globale rechten endpoint</td><td><span class="pill progress">In test</span></td><td>OR-3296</td></tr>
+        <tr><td>Per-veld rechten teruggeven aan frontend</td><td><span class="pill next">Nog te doen</span></td><td>Niet ingepland</td></tr>
+        <tr><td>AGO-validatiebug (lege velden in events)</td><td><span class="pill bad">Nieuw op te lossen</span></td><td>Nieuw Jira bug-ticket nodig</td></tr>
+      </table>
+    </section>
+
+    <!-- 11: Contributions -->
+    <section>
+      <span class="eyebrow">Wie deed wat — deze sprint</span>
+      <h3>Bijdrages 28 aug – 3 sep</h3>
+      <div class="name-row">
+        <div class="name-card">
+          <div class="who">Koen</div>
+          <div class="role">20 commits — fundament + permissiemodel (Sleutels-MVP)</div>
+          <ul>
+            <li>Permission-enum, RolePermissionMap, ScopePermissionMap opgezet</li>
+            <li>Restriction-algebra + Sleutels end-to-end</li>
+            <li>Twee handover-documenten + cookbook geschreven</li>
+          </ul>
+        </div>
+        <div class="name-card">
+          <div class="who">Egon</div>
+          <div class="role">6 commits — uitrol naar overige resource-types</div>
+          <ul>
+            <li>Permissiecontroles op 9 controllers in één keer</li>
+            <li>57-bestanden testsuite (PermissionMatrix)</li>
+            <li>Orgaan (Body) sub-controllers gerechtigd</li>
+            <li>Scope-gebaseerde rechten (M2M) + referentiedata-handlers naar <code class="inline">RequiresPermission</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12: Closing -->
+    <section class="center">
+      <span class="eyebrow">Samengevat</span>
+      <h2>Permissiemodel en restrictie-architectuur staan; uitrol naar overige resources loopt</h2>
+      <p class="lead" style="text-align:center;">Eén actiepunt: AGO-validatiebug krijgt een eigen Jira-ticket.</p>
+      <table style="margin:1em auto 0;width:auto;">
+        <tr><td style="color:var(--muted);">Epic</td><td class="jira-tag">OR-3114</td></tr>
+      </table>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    center: false,
+    transition: 'slide',
+    width: 1280,
+    height: 720,
+    margin: 0.08,
+    plugins: [ RevealHighlight ]
+  });
+</script>
+</body>
+</html>
