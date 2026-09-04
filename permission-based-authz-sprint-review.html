@@ -223,6 +223,9 @@ public static class RolePermissionMap
     <section>
       <span class="eyebrow">Command handlers — waar staat het patroon al</span>
       <h3>14 van 130 commands op het nieuwe permissiemodel</h3>
+      <div class="card" style="margin-bottom:0.5em;">
+        <p class="lead" style="margin:0;"><b>Alles hiervan is deze sprint gerealiseerd.</b> Vóór deze sprint (op <code class="inline">main</code>): 0 permission-based checks — het <code class="inline">Permission</code>-enum, <code class="inline">RolePermissionMap</code>, <code class="inline">ScopePermissionMap</code>, alle restricties en <code class="inline">RequiresPermission</code> bestonden nog niet. <code class="inline">KeyPolicy</code> en <code class="inline">FormalFrameworkPolicy</code> bestonden wél al, maar checkten intern op rollen — ze zijn deze sprint omgebouwd naar het permissiemodel. Daarnaast: 57 nieuwe PermissionMatrix-integratietests, ~11.700 regels toegevoegd over 212 bestanden.</p>
+      </div>
       <div class="stat-row">
         <div class="stat"><div class="num">14 / 130</div><div class="label">command-handle-methodes op het nieuwe permissiemodel (<code class="inline">Permission</code> + <code class="inline">IRestriction</code>) — direct via <code class="inline">RequiresPermission(...)</code> of via <code class="inline">KeyPolicy</code>/<code class="inline">FormalFrameworkPolicy</code>: Capaciteiten (3), Toepassingsgebieden (5), Functietypes (2), Locaties (2), Sleutels (2)</div></div>
         <div class="stat"><div class="num">116 / 130</div><div class="label">nog te migreren: 100 op rol-checks, 16 zonder enige check in de handler</div></div>
