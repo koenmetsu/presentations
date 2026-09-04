@@ -222,16 +222,16 @@ public static class RolePermissionMap
     <!-- 7c: Handlers coverage -->
     <section>
       <span class="eyebrow">Command handlers — waar staat het patroon al</span>
-      <h3>9 van 100 command handlers op het nieuwe permissiemodel</h3>
+      <h3>14 van 130 commands op het nieuwe permissiemodel</h3>
       <div class="stat-row">
-        <div class="stat"><div class="num">9 / 100</div><div class="label">op het nieuwe permissiemodel (<code class="inline">Permission</code> + <code class="inline">IRestriction</code>) — direct via <code class="inline">RequiresPermission(...)</code> of via <code class="inline">KeyPolicy</code>/<code class="inline">FormalFrameworkPolicy</code></div></div>
-        <div class="stat"><div class="num">91 / 100</div><div class="label">nog te migreren</div></div>
+        <div class="stat"><div class="num">14 / 130</div><div class="label">command-handle-methodes op het nieuwe permissiemodel (<code class="inline">Permission</code> + <code class="inline">IRestriction</code>) — direct via <code class="inline">RequiresPermission(...)</code> of via <code class="inline">KeyPolicy</code>/<code class="inline">FormalFrameworkPolicy</code>: Capaciteiten (3), Toepassingsgebieden (5), Functietypes (2), Locaties (2), Sleutels (2)</div></div>
+        <div class="stat"><div class="num">116 / 130</div><div class="label">nog te migreren: 100 op rol-checks, 16 zonder enige check in de handler</div></div>
       </div>
       <div class="card" style="margin-top:0.6em;">
-        <p class="lead" style="margin:0;">Let op: veel van die 91 zitten al in een eigen <code class="inline">Policy</code>-klasse (bv. <code class="inline">LabelPolicy</code>, <code class="inline">VlimpersPolicy</code>, <code class="inline">CapacityPolicy</code>, <code class="inline">BeheerderForOrganisation...Policy</code>) — maar die klasses checken vandaag nog rechtstreeks op <code class="inline">Role</code> (<code class="inline">user.IsInAnyOf(...)</code>), niet op <code class="inline">Permission</code>. De "Policy"-naam is dus geen garantie dat het al het nieuwe model is.</p>
+        <p class="lead" style="margin:0;">Geteld per <code class="inline">Handle(ICommandEnvelope&lt;...&gt;)</code>-methode (= per command), over 101 handler-bestanden — bestanden als <code class="inline">CapacityCommandHandlers</code> bevatten meerdere commands. Let op: veel van die 100 zitten al in een eigen <code class="inline">Policy</code>-klasse (bv. <code class="inline">LabelPolicy</code>, <code class="inline">VlimpersPolicy</code>, <code class="inline">CapacityPolicy</code>) — maar die checken vandaag nog rechtstreeks op <code class="inline">Role</code> (<code class="inline">user.IsInAnyOf(...)</code>), niet op <code class="inline">Permission</code>. De "Policy"-naam is dus geen garantie dat het al het nieuwe model is.</p>
       </div>
       <div class="card">
-        <p class="lead" style="margin:0;"><b>Nog geen enkele check (11 handlers):</b> o.a. <code class="inline">AssignBodyNumberCommandHandler</code>, <code class="inline">UpdateMainLocationCommandHandler</code>, <code class="inline">UpdateMainBuildingCommandHandler</code>, <code class="inline">CreateOrganisationsFromImportCommandHandler</code>, <code class="inline">UpdateOrganisationFormalFrameworkParentsCommandHandler</code>.</p>
+        <p class="lead" style="margin:0;"><b>Nog geen enkele check in de handler (16 commands):</b> o.a. <code class="inline">AssignBodyNumber</code>, <code class="inline">UpdateMainLocation</code>, <code class="inline">UpdateMainBuilding</code>, <code class="inline">CreateOrganisationsFromImport</code>, <code class="inline">RebuildProjection</code>, en de 4 KBO-commands (die zijn wel afgeschermd op controller-niveau via <code class="inline">OrganisationKboCommandController</code>).</p>
       </div>
     </section>
 
